@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberPunk Edgerunners</title>
+    <link rel="stylesheet" href="assets/index.css" />
+    <link rel="shortcut icon" href="assets/logo.jpg" type="image/x-icon" />
+  </head>
+  <body>
+    <nav>
+      <div class="atas">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#character">Character</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main id="home" 0>
+      <div class="gambar">
+        <img src="assets/2cy.jpg" alt="" />
+      </div>
+    </main>
+    <section id="about">
+      <div class="about-img">
+        <img src="assets/about.jpg" alt="" />
+        <div class="text">
+          <h2>About</h2>
+          <p>
+            Cyberpunk: Edgerunners ( Japanese :サイバーパンク エッジランナーズ,
+            Hepburn : Saibāpanku Edjirannāzu ) is a cyberpunk original internet
+            animation (ONA) miniseriesbased on the video game Cyberpunk 2077 by
+            Polish studio CD Projekt Red . The series is animated by Japanese
+            animation studio Trigger under CD Projekt's supervision and
+            premiered on Netflix in September 2022. Set in the Cyberpunk
+            universecreated by Mike Pondsmith , the anime serves as a prequel to
+            the game and takes place approximately one year before the events of
+            Cyberpunk 2077 .
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="character" id="character">
+      <h2>Character</h2>
+      <div class="slider-container">
+        <button class="arrow arrow-left" id="prev">&#10094;</button>
+        <div class="slider" id="slider">
+          <div class="card">
+            <img src="assets/lucy.jpg" alt="Character 1" />
+            <div class="info">
+              <h3>Lucyna Kushinada</h3>
+              <p>
+                A young and mysterious netrunner who becomes romantically
+                involved with David and introduces him to the criminal
+                underworld of Night City. She has a particular hatred towards
+                Arasaka and dreams of traveling to the Moon.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="assets/david.jpg" alt="Character 2" />
+            <div class="info">
+              <h3>David Martinez</h3>
+              <p>
+                A Latino American teenager who is a top student at the
+                prestigious Arasaka Academy. Because he comes from a very poor
+                family, he is relentlessly bullied by his classmates and feels
+                like he does not belong at school.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="assets/rebecca.jpg" alt="Character 3" />
+            <div class="info">
+              <h3>Rebecca</h3>
+              <p>
+                A young and trigger-happy edgerunner and a member of Maine's
+                crew. She is also Pilar's younger sister.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="assets/dorio.jpg" alt="Character 4" />
+            <div class="info">
+              <h3>Dorio</h3>
+              <p>
+                Marie Westbrook (English) Maine's girlfriend and
+                second-in-command.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="assets/dc.jpg" alt="Character 4" />
+            <div class="info">
+              <h3>Maine</h3>
+              <p>
+                A veteran edgerunner who commands his own crew. He is one of
+                Gloria's clients and allows David to join the crew under his
+                guidance.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="assets/faraday.jpg" alt="Character 4" />
+            <div class="info">
+              <h3>Faraday</h3>
+              <p>
+                A fixer who works for Militech. He has a business relationship
+                with Maine's crew and often hires them to conduct jobs that
+                usually involve them performing corporate espionage against
+                Arasaka.
+              </p>
+            </div>
+          </div>
+        </div>
+        <button class="arrow arrow-right" id="next">&#10095;</button>
+      </div>
+    </section>
+    <section id="contact" class="contact">
+      <h2>Get In Touch</h2>
+      <p>
+        Tertarik untuk berkolaborasi? Mari kita ciptakan sesuatu yang luar biasa
+        bersama!
+      </p>
+      <div class="contact-links">
+        <a href="mailto: robotgedeg002@gmail.com" class="contact-link">Email</a>
+        <a
+          target="_blank"
+          href="https://id.linkedin.com/in/muhammad-iqbal-190117389"
+          class="contact-link"
+          >LinkedIn</a
+        >
+        <a
+          target="_blank"
+          href="https://github.com/Claudio374 "
+          class="contact-link"
+          >GitHub</a
+        >
+        <a
+          target="_blank"
+          href=" https://www.instagram.com/ballll_zzz?igsh=dTduYmlvcjJkMHFm"
+          class="contact-link"
+          >Instagram</a
+        >
+      </div>
+    </section>
+    <footer>
+      <p>&copy; 2025 Muhammad Iqbal Ramadhan. All rights reserved.</p>
+    </footer>
+    <script>
+      const slider = document.getElementById("slider");
+      const next = document.getElementById("next");
+      const prev = document.getElementById("prev");
+      let scrollAmount = 0;
+
+      next.addEventListener("click", () => {
+        slider.scrollBy({ left: 270, behavior: "smooth" });
+      });
+
+      prev.addEventListener("click", () => {
+        slider.scrollBy({ left: -270, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
