@@ -1,167 +1,813 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CyberPunk Edgerunners</title>
-    <link rel="stylesheet" href="assets/index.css" />
-    <link rel="shortcut icon" href="assets/logo.jpg" type="image/x-icon" />
-  </head>
-  <body>
-    <nav>
-      <div class="atas">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#character">Character</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <main id="home" 0>
-      <div class="gambar">
-        <img src="assets/2cy.jpg" alt="" />
-      </div>
-    </main>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk: Edgerunners</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cyber-yellow: #fcee0a;
+            --cyber-purple: #b800e6;
+            --cyber-dark: #0a0e27;
+            --cyber-blue: #00d9ff;
+            --cyber-pink: #ff006e;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: var(--cyber-dark);
+            color: var(--cyber-yellow);
+            overflow-x: hidden;
+        }
+
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Neon Glow */
+        .neon {
+            text-shadow: 0 0 10px var(--cyber-yellow),
+                         0 0 20px var(--cyber-yellow),
+                         0 0 30px var(--cyber-purple),
+                         0 0 40px var(--cyber-purple);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--cyber-yellow);
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--cyber-yellow);
+            text-shadow: 0 0 20px var(--cyber-purple);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            animation: glitch 0.3s;
+            color: var(--cyber-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cyber-yellow);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--cyber-purple);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyber-purple);
+            text-shadow: 0 0 10px var(--cyber-purple);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--cyber-yellow);
+            transition: all 0.3s;
+            box-shadow: 0 0 10px var(--cyber-yellow);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 5% 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s, pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--cyber-purple);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s;
+        }
+
+        .cta-button {
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 2px solid var(--cyber-yellow);
+            color: var(--cyber-yellow);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--cyber-yellow);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            color: var(--cyber-dark);
+            box-shadow: 0 0 20px var(--cyber-yellow);
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, rgba(184, 0, 230, 0.1), rgba(252, 238, 10, 0.1));
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            animation: fadeInUp 1s;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #fff;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(45deg, var(--cyber-purple), var(--cyber-yellow));
+            border: 3px solid var(--cyber-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            transition: all 0.3s;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 3px solid var(--cyber-yellow);
+        }
+
+        .about-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--cyber-purple);
+        }
+
+        /* Characters Section */
+        #characters {
+            background: var(--cyber-dark);
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .character-card {
+            background: rgba(184, 0, 230, 0.1);
+            border: 2px solid var(--cyber-purple);
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            height: 450px;
+        }
+
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(252, 238, 10, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .character-card:hover::before {
+            left: 100%;
+        }
+
+        .character-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyber-yellow);
+            box-shadow: 0 10px 30px rgba(252, 238, 10, 0.3);
+        }
+
+        .character-name {
+            font-size: 1.8rem;
+            color: var(--cyber-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .character-role {
+            color: var(--cyber-purple);
+            margin-bottom: 1rem;
+        }
+
+        .character-preview {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .character-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+
+        .character-card:hover .character-image {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+
+        .character-info {
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(10, 14, 39, 0.95), transparent);
+            position: relative;
+        }
+
+        .character-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(10, 14, 39, 0.9) 100%);
+            pointer-events: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--cyber-dark);
+            border: 3px solid var(--cyber-yellow);
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.5s;
+            box-shadow: 0 0 50px var(--cyber-purple);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: scale(0.7) translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: var(--cyber-yellow);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--cyber-purple);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            color: var(--cyber-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .modal-subtitle {
+            color: var(--cyber-purple);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-description {
+            color: #fff;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Rating Section */
+        #rating {
+            background: linear-gradient(135deg, rgba(252, 238, 10, 0.1), rgba(184, 0, 230, 0.1));
+        }
+
+        .rating-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .rating-card {
+            background: rgba(10, 14, 39, 0.8);
+            border: 2px solid var(--cyber-yellow);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            animation: fadeInUp 1s;
+        }
+
+        .rating-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--cyber-yellow);
+        }
+
+        .rating-number {
+            font-size: 3rem;
+            color: var(--cyber-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .rating-label {
+            font-size: 1.2rem;
+            color: var(--cyber-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-stars {
+            font-size: 2rem;
+            color: var(--cyber-yellow);
+        }
+
+        footer{
+          height: 60px;
+          background: var(--cyber-dark);
+          border-top: 2px solid var(--cyber-yellow);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background: rgba(10, 14, 39, 0.98);
+                flex-direction: column;
+                padding: 3rem 2rem;
+                gap: 2rem;
+                transition: right 0.5s;
+                border-left: 2px solid var(--cyber-yellow);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            h1, h2 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo neon">EDGERUNNERS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#characters">Characters</a></li>
+                <li><a href="#rating">Rating</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <h1 class="hero-title neon">CYBERPUNK: EDGERUNNERS</h1>
+            <p class="hero-subtitle">Welcome to Night City</p>
+            <button class="cta-button">Explore Now</button>
+        </div>
+    </section>
+
     <section id="about">
-      <div class="about-img">
-        <img src="assets/about.jpg" alt="" />
-        <div class="text">
-          <h2>About</h2>
-          <p>
-            Cyberpunk: Edgerunners ( Japanese :サイバーパンク エッジランナーズ,
-            Hepburn : Saibāpanku Edjirannāzu ) is a cyberpunk original internet
-            animation (ONA) miniseriesbased on the video game Cyberpunk 2077 by
-            Polish studio CD Projekt Red . The series is animated by Japanese
-            animation studio Trigger under CD Projekt's supervision and
-            premiered on Netflix in September 2022. Set in the Cyberpunk
-            universecreated by Mike Pondsmith , the anime serves as a prequel to
-            the game and takes place approximately one year before the events of
-            Cyberpunk 2077 .
-          </p>
+        <h2 class="neon fade-in">About the Anime</h2>
+        <div class="about-content fade-in">
+            <div class="about-text">
+                <p>Cyberpunk: Edgerunners adalah serial anime yang diproduksi oleh Studio Trigger untuk Netflix, berlatar di dunia Cyberpunk 2077. Cerita mengikuti David Martinez, seorang pemuda jalanan yang memutuskan untuk menjadi edgerunner - seorang penjahat bayaran yang juga dikenal sebagai cyberpunk.</p>
+                <br>
+                <p>Dalam dunia futuristik Night City yang penuh dengan teknologi canggih dan modifikasi cybernetic, David berjuang untuk bertahan hidup di lingkungan yang brutal dan penuh bahaya. Bersama dengan kru edgerunner-nya, mereka menjalankan misi berbahaya sambil menghadapi konspirasi korporasi dan kehancuran pribadi.</p>
+            </div>
+            <div class="about-image">
+                <img src="assets/cy.jpg" alt="">
+            </div>
         </div>
-      </div>
     </section>
-    <section class="character" id="character">
-      <h2>Character</h2>
-      <div class="slider-container">
-        <button class="arrow arrow-left" id="prev">&#10094;</button>
-        <div class="slider" id="slider">
-          <div class="card">
-            <img src="assets/lucy.jpg" alt="Character 1" />
-            <div class="info">
-              <h3>Lucyna Kushinada</h3>
-              <p>
-                A young and mysterious netrunner who becomes romantically
-                involved with David and introduces him to the criminal
-                underworld of Night City. She has a particular hatred towards
-                Arasaka and dreams of traveling to the Moon.
-              </p>
+
+    <section id="characters">
+        <h2 class="neon fade-in">Main Characters</h2>
+        <div class="characters-grid">
+            <div class="character-card fade-in" onclick="openModal('david')">
+                <img src="assets/martinez.jpg" alt="David Martinez" class="character-image">
+                <div class="character-overlay"></div>
+                <div class="character-info">
+                    <h3 class="character-name">David Martinez</h3>
+                    <p class="character-role">Protagonist</p>
+                    <p class="character-preview">Klik untuk info lebih lanjut...</p>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <img src="assets/david.jpg" alt="Character 2" />
-            <div class="info">
-              <h3>David Martinez</h3>
-              <p>
-                A Latino American teenager who is a top student at the
-                prestigious Arasaka Academy. Because he comes from a very poor
-                family, he is relentlessly bullied by his classmates and feels
-                like he does not belong at school.
-              </p>
+            <div class="character-card fade-in" onclick="openModal('lucy')">
+                <img src="assets/lucy.jpg" alt="Lucy" class="character-image">
+                <div class="character-overlay"></div>
+                <div class="character-info">
+                    <h3 class="character-name">Lucy</h3>
+                    <p class="character-role">Netrunner</p>
+                    <p class="character-preview">Klik untuk info lebih lanjut...</p>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <img src="assets/rebecca.jpg" alt="Character 3" />
-            <div class="info">
-              <h3>Rebecca</h3>
-              <p>
-                A young and trigger-happy edgerunner and a member of Maine's
-                crew. She is also Pilar's younger sister.
-              </p>
+            <div class="character-card fade-in" onclick="openModal('rebecca')">
+                <img src="assets/rebecca.jpg" alt="Rebecca" class="character-image">
+                <div class="character-overlay"></div>
+                <div class="character-info">
+                    <h3 class="character-name">Rebecca</h3>
+                    <p class="character-role">Solo</p>
+                    <p class="character-preview">Klik untuk info lebih lanjut...</p>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <img src="assets/dorio.jpg" alt="Character 4" />
-            <div class="info">
-              <h3>Dorio</h3>
-              <p>
-                Marie Westbrook (English) Maine's girlfriend and
-                second-in-command.
-              </p>
+            <div class="character-card fade-in" onclick="openModal('maine')">
+                <img src="assets/maine.jpg" alt="Maine" class="character-image">
+                <div class="character-overlay"></div>
+                <div class="character-info">
+                    <h3 class="character-name">Maine</h3>
+                    <p class="character-role">Leader</p>
+                    <p class="character-preview">Klik untuk info lebih lanjut...</p>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <img src="assets/dc.jpg" alt="Character 4" />
-            <div class="info">
-              <h3>Maine</h3>
-              <p>
-                A veteran edgerunner who commands his own crew. He is one of
-                Gloria's clients and allows David to join the crew under his
-                guidance.
-              </p>
+            <div class="character-card fade-in" onclick="openModal('dorio')">
+                <img src="assets/dorio.jpg" alt="Dorio" class="character-image">
+                <div class="character-overlay"></div>
+                <div class="character-info">
+                    <h3 class="character-name">Dorio</h3>
+                    <p class="character-role">Heavy Weapons</p>
+                    <p class="character-preview">Klik untuk info lebih lanjut...</p>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <img src="assets/faraday.jpg" alt="Character 4" />
-            <div class="info">
-              <h3>Faraday</h3>
-              <p>
-                A fixer who works for Militech. He has a business relationship
-                with Maine's crew and often hires them to conduct jobs that
-                usually involve them performing corporate espionage against
-                Arasaka.
-              </p>
+            <div class="character-card fade-in" onclick="openModal('falco')">
+                <img src="assets/falco.jpg" alt="Falco" class="character-image">
+                <div class="character-overlay"></div>
+                <div class="character-info">
+                    <h3 class="character-name">Falco</h3>
+                    <p class="character-role">Driver</p>
+                    <p class="character-preview">Klik untuk info lebih lanjut...</p>
+                </div>
             </div>
-          </div>
         </div>
-        <button class="arrow arrow-right" id="next">&#10095;</button>
-      </div>
     </section>
-    <section id="contact" class="contact">
-      <h2>Get In Touch</h2>
-      <p>
-        Tertarik untuk berkolaborasi? Mari kita ciptakan sesuatu yang luar biasa
-        bersama!
-      </p>
-      <div class="contact-links">
-        <a href="mailto: robotgedeg002@gmail.com" class="contact-link">Email</a>
-        <a
-          target="_blank"
-          href="https://id.linkedin.com/in/muhammad-iqbal-190117389"
-          class="contact-link"
-          >LinkedIn</a
-        >
-        <a
-          target="_blank"
-          href="https://github.com/Claudio374 "
-          class="contact-link"
-          >GitHub</a
-        >
-        <a
-          target="_blank"
-          href=" https://www.instagram.com/ballll_zzz?igsh=dTduYmlvcjJkMHFm"
-          class="contact-link"
-          >Instagram</a
-        >
-      </div>
+
+    <section id="rating">
+        <h2 class="neon fade-in">Anime Rating</h2>
+        <div class="rating-container">
+            <div class="rating-card fade-in">
+                <div class="rating-number">9.2</div>
+                <div class="rating-label">MyAnimeList</div>
+                <div class="rating-stars">★★★★★</div>
+            </div>
+            <div class="rating-card fade-in">
+                <div class="rating-number">98%</div>
+                <div class="rating-label">Rotten Tomatoes</div>
+                <div class="rating-stars">★★★★★</div>
+            </div>
+            <div class="rating-card fade-in">
+                <div class="rating-number">8.3</div>
+                <div class="rating-label">IMDb</div>
+                <div class="rating-stars">★★★★☆</div>
+            </div>
+            <div class="rating-card fade-in">
+                <div class="rating-number">10</div>
+                <div class="rating-label">Total Episodes</div>
+                <div class="rating-stars">📺</div>
+            </div>
+        </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal" id="characterModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <p class="modal-subtitle" id="modalRole"></p>
+            <p class="modal-description" id="modalDescription"></p>
+        </div>
+    </div>
+
     <footer>
-      <p>&copy; 2025 Muhammad Iqbal Ramadhan. All rights reserved.</p>
+      <p>Made by Muhammad Iqbal Ramadhan </p>
     </footer>
+
     <script>
-      const slider = document.getElementById("slider");
-      const next = document.getElementById("next");
-      const prev = document.getElementById("prev");
-      let scrollAmount = 0;
+        // Character Data
+        const characters = {
+            david: {
+                name: "David Martinez",
+                role: "Protagonist / Solo",
+                description: "David adalah seorang pemuda yang kehilangan ibunya dalam kecelakaan. Setelah menemukan military-grade Sandevistan milik ibunya, David memutuskan untuk menjadi edgerunner. Dengan implan cybernetic yang luar biasa, ia dengan cepat naik pangkat dalam dunia kriminal Night City, meskipun harus membayar harga yang mahal untuk ambisinya."
+            },
+            lucy: {
+                name: "Lucy",
+                role: "Netrunner / Hacker",
+                description: "Lucy adalah seorang netrunner berbakat yang bermimpi untuk pergi ke bulan. Dengan kemampuan hacking yang luar biasa, ia dapat memasuki cyberspace dan melawan AI korporasi. Ia menjadi pasangan dan mentor David, membimbingnya dalam dunia edgerunning sambil menyimpan rahasia gelapnya sendiri."
+            },
+            rebecca: {
+                name: "Rebecca",
+                role: "Solo / Weapons Specialist",
+                description: "Rebecca adalah anggota kru yang energik dan agresif dengan spesialisasi senjata berat. Meskipun bertubuh kecil, ia sangat mematikan dalam pertempuran dengan arsenal senjata yang mengesankan. Loyalitasnya kepada kru tidak tertandingi, dan ia tidak ragu untuk terjun ke dalam bahaya."
+            },
+            maine: {
+                name: "Maine",
+                role: "Leader / Solo",
+                description: "Maine adalah pemimpin karismatik dari kru edgerunner. Dengan tubuh yang dipenuhi implan cybernetic, ia merupakan tank hidup dalam pertempuran. Maine memimpin dengan contoh dan sangat protektif terhadap anggota krunya, meskipun augmentasi berlebihan mulai mempengaruhi kewarasannya."
+            },
+            dorio: {
+                name: "Dorio",
+                role: "Heavy Weapons / Support",
+                description: "Dorio adalah tangan kanan Maine dan pasangannya. Dengan tubuh yang kokoh dan implan heavy weapons, ia adalah support utama kru dalam misi berbahaya. Dorio memiliki kepala yang dingin dan sering bertindak sebagai suara akal sehat dalam grup, terutama ketika Maine mulai menunjukkan tanda-tanda cyberpsychosis."
+            },
+            falco: {
+                name: "Falco",
+                role: "Driver / Technician",
+                description: "Falco adalah driver dan teknisi kru yang tenang dan dapat diandalkan. Dengan keterampilan mengemudi yang luar biasa dan pengetahuan teknis, ia memastikan kru dapat melarikan diri dari situasi berbahaya. Meskipun tidak sekuat anggota lain dalam pertempuran, perannya sebagai driver sangat vital bagi kesuksesan misi."
+            }
+        };
 
-      next.addEventListener("click", () => {
-        slider.scrollBy({ left: 270, behavior: "smooth" });
-      });
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
 
-      prev.addEventListener("click", () => {
-        slider.scrollBy({ left: -270, behavior: "smooth" });
-      });
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Modal Functions
+        function openModal(characterId) {
+            const character = characters[characterId];
+            const modal = document.getElementById('characterModal');
+            
+            document.getElementById('modalTitle').textContent = character.name;
+            document.getElementById('modalRole').textContent = character.role;
+            document.getElementById('modalDescription').textContent = character.description;
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('characterModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('characterModal').addEventListener('click', (e) => {
+            if (e.target.id === 'characterModal') {
+                closeModal();
+            }
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // CTA Button
+        document.querySelector('.cta-button').addEventListener('click', () => {
+            document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
-  </body>
+</body>
 </html>
